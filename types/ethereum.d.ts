@@ -1,0 +1,14 @@
+interface EthereumProvider {
+  request: <T = unknown>(args: { method: string; params?: unknown[] }) => Promise<T>
+  on?: (event: string, callback: (...args: unknown[]) => void) => void
+  removeListener?: (event: string, callback: (...args: unknown[]) => void) => void
+  isMetaMask?: boolean
+  isConnected?: () => boolean
+  selectedAddress?: string | null
+}
+
+interface Window {
+  ethereum?: EthereumProvider & {
+    providers?: EthereumProvider[]
+  }
+}
